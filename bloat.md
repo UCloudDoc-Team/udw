@@ -14,6 +14,7 @@ udw的存储实现(MVCC-多版本并发控制)来自于Postgres。根据MVCC的�
 > vacuum full 加载的锁与 DDL 锁类似，是排它锁。建议在没有业务的时候执行，不要堵塞业务。
 
 使用 vacuum full 回收垃圾的建议操作流程：
+
 1. 记录下表的索引
 2. 删除索引
 3. vacuum full 表

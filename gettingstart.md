@@ -16,21 +16,22 @@
 
 其中可选的机型配置有：
 
-| 机型    | 名称          | 配置                    |
-| ----- | ----------- | --------------------- |
+| 机型       | 名称        | 配置                   |
+|------------|-------------|------------------------|
 | 存储密集型 | ds1.large   | 4核 24G 2000G(SATA)    |
 | 存储密集型 | ds1.6xlarge | 24核 144G 12000G(SATA) |
 | 计算密集型 | dc1.large   | 2核 12G 300G(SSD)      |
 | 计算密集型 | dc1.8xlarge | 28核 168G 3800G(SSD)   |
 
-选择数据仓库类型：Greenplum是EMC开源的数据仓库产品、Udpg是基于PostgreSQL开发的大规模并行、完全托管的PB级数据仓库服务。
+选择数据仓库类型：Greenplum 是 EMC 开源的数据仓库产品、Udpg 是基于 PostgreSQL 开发的大规模并行、完全托管的 PB 级数据仓库服务。
 
-选择节点个数：UDW是分布式架构、所有节点数据都是双机热备,实际可用总容量略小于节点个数\*节点磁盘大小/2，请根据实际数据大小选择合适的节点。
+选择节点个数：UDW 是分布式架构、所有节点数据都是双机热备,实际可用总容量略小于节点个数\*节点磁盘大小/2，请根据实际数据大小选择合适的节点。
 
 3.设置数据仓库信息
-必选项有数据仓库名称、DB管理员用户名、管理员密码。可选项有默认DB,默认DB的名称为dev，你可以选择除了“test”、“postgres”、“template
-”、“template0”、“template1” 、“default”之外的其他名称。
-DB管理员用户名不能为“postgres”。端口固定为5432，暂不提供修改。
+
+必选项有数据仓库名称、DB管理员用户名、管理员密码。可选项有默认DB,默认DB的名称为dev，你可以选择除了“test”、“postgres”、“template”、“template0”、“template1” 、“default”之外的其他名称。
+
+DB管理员用户名不能为“postgres”。端口固定为 5432，暂不提供修改。
 
 ![image](/images/udw5.png)
 
@@ -55,16 +56,16 @@ DB管理员用户名不能为“postgres”。端口固定为5432，暂不提供
 Linux操作系统
 
 ```
-yum install postgresql-jdbc.noarch –y 
+yum install postgresql-jdbc.noarch –y
 ```
 
-Windows环境下JDBC驱动，将jar添加到工程的BUILD PATH。
+Windows 环境下 JDBC 驱动，将 jar 添加到工程的 BUILD PATH。
 
 1.  示例程序1，java连接UDW，执行建表，插入操作
 
 **PostgreSQLJDBC1.java**
 
-``` java
+<file java PostgreSQLJDBC1.java>
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -85,7 +86,7 @@ public class PostgreSQLJDBC1 {
         stmt.close();
         c.commit();
         c.close();
-        }   
+        }
         catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
@@ -94,13 +95,11 @@ public class PostgreSQLJDBC1 {
         System.out.println("Opened database successfully");
     }
 }
-```
+</file>
 
 1.  示例程序二：java连接UDW，执行查询操作
 
-
-
-``` java
+<file java PostgreSQLJDBC2.java>
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -132,8 +131,8 @@ public class PostgreSQLJDBC2 {
              System.exit(0);
          }
      }
- }
-```
+}
+</file>
 
 ### ODBC方式连接
 
@@ -141,13 +140,9 @@ Linux操作系统：CentOS 6.5 64位
 
 1.  安装 postgresql odbc驱动
 
-
-
-    yum install postgresql-odbc.x86_64 -y
+        yum install postgresql-odbc.x86_64 -y
 
 1.  编辑odbcinst.ini文件，配置odbc驱动
-
-
 
 ```
 vim  /etc/odbcinst.ini
@@ -162,8 +157,6 @@ FileUsage      = 1
 
 1.  测试ODBC驱动是否安装成功
 
-
-
 ```
 # odbcinst -q -d
 [PostgreSQL]
@@ -172,8 +165,6 @@ FileUsage      = 1
 如果出现以上输出，代表在这台机器上已成功安装了PostgreSQL的ODBC驱动。
 
 1.  编辑/etc/odbc.int文件配置ODBC连接
-
-
 
 ```
 [testdb]Description  = PostgreSQL connection to TestDB
@@ -187,12 +178,10 @@ Protocol             = 8.3
 ReadOnly             = No
 RowVersioning        = NoShow
 SystemTables         = No
-ConnSettings         = 
+ConnSettings         =
 ```
 
 1.  测试连接
-
-
 
 ```
 isql testdb
@@ -200,11 +189,9 @@ isql testdb
 
 ![image](/images/udw10.png)
 
-> 注解：
-> 
 > 如出现以上内容，则表示psqlodbc配置成功。
 
-### 其他方式
+=== 其他方式 ===
 
 1.udw客户端的方式访问
 
@@ -216,9 +203,9 @@ isql testdb
 
 ```
 wget http://udwclient.cn-bj.ufileos.com/greenplum-client.tar.gz
-```
 
 tar -zxvf greenplum-client.tar.gz
+```
 
 2）配置udw客户端
 
@@ -322,7 +309,7 @@ cur.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
   VALUES (2, 'Allen', 25, 'Texas', 15000.00 )");
 conn.commit()
 print "Records created successfully";
-conn.close() 
+conn.close()
 ```
 
 示例4. 查询 select.py
@@ -342,7 +329,7 @@ for row in rows:
     print "ADDRESS = ", row[2]
     print "SALARY = ", row[3], "\n"
 print "Operation done successfully";
-conn.close()  
+conn.close()
 ```
 
 示例5. 更新 update.py
@@ -365,7 +352,7 @@ for row in rows:
    print "ADDRESS = ", row[2]
    print "SALARY = ", row[3], "\n"
  print "Operation done successfully";
- conn.close()  
+ conn.close()
 ```
 
 示例6. 删除 delete.py
@@ -388,7 +375,7 @@ for row in rows:
     print "ADDRESS = ", row[2]
     print "SALARY = ", row[3], "\n"
 print "Operation done successfully";
-conn.close()  
+conn.close()
 ```
 
 3.php客户端
@@ -427,22 +414,22 @@ if(!$db){
     echo "Error : Unable to open database\n";
 } else {
     echo "Opened database successfully\n";
-} 
-$sql =<<<EOF 
-  CREATE TABLE COMPANY 
+}
+$sql =<<<EOF
+  CREATE TABLE COMPANY
   (ID INT PRIMARY KEY NOT NULL,
    NAME TEXT NOT NULL,
    AGE INT NOT NULL,
    ADDRESS CHAR(50),
    SALARY REAL);
-EOF; 
-$ret = pg_query($db, $sql); 
+EOF;
+$ret = pg_query($db, $sql);
 if(!$ret)
-    { echo pg_last_error($db); 
+    { echo pg_last_error($db);
         } else {
-          echo "Table created successfullyn"; 
-        } 
-pg_close($db); 
+          echo "Table created successfullyn";
+        }
+pg_close($db);
 ?>
 ```
 
@@ -497,7 +484,7 @@ $ret = pg_query($db, $sql);
 if(!$ret){
    echo pg_last_error($db);
    exit;
-} 
+}
 while($row = pg_fetch_row($ret)){
    echo "ID = ". $row[0] . "\n";
    echo "NAME = ". $row[1] ."\n";
@@ -530,7 +517,7 @@ $ret = pg_query($db, $sql);
 if(!$ret){
    echo pg_last_error($db);
    exit;
-} 
+}
 while($row = pg_fetch_row($ret)){
    echo "ID = ". $row[0] . "\n";
    echo "NAME = ". $row[1] ."\n";
@@ -573,7 +560,7 @@ $ret = pg_query($db, $sql);
 if(!$ret){
    echo pg_last_error($db);
    exit;
-} 
+}
 while($row = pg_fetch_row($ret)){
    echo "ID = ". $row[0] . "\n";
    echo "NAME = ". $row[1] ."\n";

@@ -1,23 +1,22 @@
 {{indexmenu_n>95}}
 
-# 数据可视化
+# 接入第三方 BI 工具
 
-UDW可以接入第三方商业智能（BI）工具来快速实现数据的可视化。第三方商业智能（BI）工具使用标准数据库接口连接UDW数据仓库，例如：JDBC和ODBC。
+UDW可以接入第三方商业智能（BI）工具来快速实现数据的可视化。第三方商业智能（BI）工具使用标准数据库接口连接 UDW 数据仓库，例如：JDBC 和 ODBC。
 
-目前经过测试的有：Zeppelin和SuperSet。
+目前经过测试的有：Zeppelin 和 SuperSet。
 
-## 一、 UDW接入Zeppelin
+## 一、 UDW 接入 Zeppelin
 
-### Zeppelin简介
+### Zeppelin 简介
 
-Zeppelin是一个开源的Apache的孵化项目. 它是一款基本web的notebook工具，支持交互式数据分析。通过插件的方式接入各种解释器（interpreter），使得用户能够以特定的语言或数据处理后端来完成交互式查询，并快速实现数据可视化。
+Zeppelin 是一个开源的 Apache 的孵化项目. 它是一款基本 web 的 notebook 工具，支持交互式数据分析。通过插件的方式接入各种解释器（interpreter），使得用户能够以特定的语言或数据处理后端来完成交互式查询，并快速实现数据可视化。
 
-### 部署Zeppelin
+### 部署 Zeppelin
 
-1\) 安装Java
+1\) 安装 Java
 
-Zeppelin支持的操作系统如下图所示。在安装Zeppelin之前，你需要在部署的服务器上安装Oracle JDK 1.7或以上版本,
-并配置好相应的JAVA\_HOME环境变量。
+Zeppelin 支持的操作系统如下图所示。在安装 Zeppelin 之前，你需要在部署的服务器上安装 Oracle JDK 1.7 或以上版本, 并配置好相应的 JAVA\_HOME 环境变量。
 
 ![image](/images/zeppelin_1.png)
 
@@ -29,25 +28,31 @@ a) 下载JDK安装包(jdk-7u79-linux-x64.tar.gz),下载地址为：
 
 创建JDK安装目录，并将安装包解压至该目录：
 
+```
 mkdir /usr/java
 
 tar zxvf jdk-7u79-linux-x64.tar.gz
+```
 
 a) 建立软链接
 
-ln -s /usr/java/jdk1.7.0\_79 /usr/java/java
+```
+ln -s /usr/java/jdk1.7.0_79 /usr/java/java
+```
 
-b) 配置环境变量。在/etc/profile文件结尾添加：
+b) 配置环境变量。在 `/etc/profile` 文件结尾添加：
 
-export JAVA\_HOME=/usr/java/java
-
-export JRE\_HOME=${JAVA\_HOME}/jre
-
-export PATH=${JAVA\_HOME}/bin:$PATH
+```
+export JAVA_HOME=/usr/java/java
+export JRE_HOME=${JAVA\_HOME}/jre
+export PATH=${JAVA_HOME}/bin:$PATH
+```
 
 d) 使环境变量生效
 
+```
 source /etc/profile
+```
 
 2\) 获取Zeppelin
 
@@ -59,13 +64,17 @@ source /etc/profile
 
 安装Zeppelin只需如下命令解压二进制安装包即可：
 
+```
 tar zxvf zeppelin-0.6.2-bin-all.tgz
+```
 
 启动Zeppelin:
 
+```
 cd /data/zeppelin-0.6.2-bin-all (Zeppelin的安装目录)
 
 bin/zeppelin-daemon.sh start
+```
 
 第一次启动Zeppelin，输出如下：
 
@@ -75,16 +84,15 @@ bin/zeppelin-daemon.sh start
 
 4）验证
 
-Zeppelin默认启动在8080端口，在浏览器中访问Zeppelin主页，访问地址是:
-<http://your_host_ip:8080/,你将看到类似如下的页面>。
+Zeppelin 默认启动在 8080 端口，在浏览器中访问 Zeppelin 主页，访问地址是: <http://your_host_ip:8080/>，你将看到类似如下的页面。
 
 ![image](/images/zeppelin_3.png)
 
-### Zeppelin接入UDW数据仓库
+### Zeppelin 接入 UDW 数据仓库
 
-1）为UDW创建一个interpreter。
+1）为 UDW 创建一个 interpreter。
 
-鼠标点击右上角的“anonymous”，在弹出的 下拉列表中选择“Interpreter”。
+鼠标点击右上角的“anonymous”，在弹出的下拉列表中选择“Interpreter”。
 
 ![image](/images/zeppelin_4.png)
 
@@ -144,70 +152,56 @@ Zeppelin提供的5种可视化视图如下所示：
 
 ![image](/images/zeppelin_17.png)
 
-## 二、 UDW接入SuperSet
+## 二、 UDW 接入 SuperSet
 
-### SuperSet简介
+### SuperSet 简介
 
-Superset （Caravel） 是由Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台（曾用名Caravel、Panoramix），该工具主要特点是可自助分析、自定义仪表盘、分析结果可视化（导出）、用户/角色权限控制，还集成了一个SQL编辑器，可以进行SQL编辑查询等。
+Superset （Caravel） 是由 Airbnb（知名在线房屋短租公司）开源的数据分析与可视化平台（曾用名Caravel、Panoramix），该工具主要特点是可自助分析、自定义仪表盘、分析结果可视化（导出）、用户/角色权限控制，还集成了一个 SQL 编辑器，可以进行 SQL 编辑查询等。
 
-### 部署SuperSet
+### 部署 SuperSet
 
-以centos
-64操作系统为例(其他操作系统可参考：<http://airbnb.io/superset/installation.html>）：
+以 Centos 64 操作系统为例(其他操作系统可参考：<http://airbnb.io/superset/installation.html>）：
 
 1\) 安装Python3及组件
 
-SuperSet只支持Python2.7和Python3.4以上版本。SuperSet官网建议使用Python3。
+SuperSet 只支持 Python2.7 和 Python3.4 以上版本。SuperSet 官网建议使用 Python3。
 
 安装系统依赖：
 
+```
 yum install gcc gcc-c++ libffi-devel python-devel python-pip
 python-wheel openssl-devel libsasl2-devel openldap-devel sqlite-devel
 zlib-devel bzip2-devel openssl-devel ncurses-devel postgresql-devel -y
+```
 
 安装Python3:
 
-wget <https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz>
-
+```
+wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz
 tar Jxvf Python-3.5.0.tar.xz
-
 cd Python-3.5.0
-
-```
 ./configure --prefix=/usr/local/python3
-```
-
 make && make install
-
-```
 echo 'export PATH=$PATH:/usr/local/python3/bin' >> ~/.bashrc
-```
-
-```
 source ~/.bashrc
-```
-
 rm /usr/bin/python
-
 ln -sv /usr/local/python3/bin/python3.5 /usr/bin/python
+```
 
 更新yum配置
 
-编辑/usr/bin/yum
+编辑 `/usr/bin/yum`，将第一行的 `#!/usr/bin/python` 改为 `#!/usr/bin/python2.6`，保存退出。
 
-将第一行的\#！/usr/bin/python改为\#\!/usr/bin/python2.6，保存退出。
+至此完成了 python3 的安装。
 
-至此完成了python3的安装。
+安装 fab
 
-安装fab
-
-wget <https://pypi.python.org/packages/source/f/fab/fab-1.4.2.tar.gz>
-
+```
+wget https://pypi.python.org/packages/source/f/fab/fab-1.4.2.tar.gz
 tar zxvf fab-1.4.2.tar.gz
-
 cd fab-1.4.2
-
 python setup.py install
+```
 
 升级pip
 
@@ -215,18 +209,21 @@ python setup.py install
 pip install --upgrade pip
 ```
 
-备注：如果pip升级过程报版本错误，请执行下面操作 请先mv /usr/bin/pip /usr/bin/pip.bak 然后执行 ln -s
-/usr/local/python3/bin/pip /usr/bin/pip
+备注：如果pip升级过程报版本错误，请执行下面操作 请先 `mv /usr/bin/pip /usr/bin/pip.bak` 然后执行 `ln -s /usr/local/python3/bin/pip /usr/bin/pip`
 
 安装psycopg2
 
+```
 pip install psycopg2==2.6.2
+```
 
-下载http://udwclient.cn-bj.ufileos.com/extras.py，替换/usr/local/python3/lib/python3.5/site-packages/psycopg2/下的extras.py文件。
+下载 http://udwclient.cn-bj.ufileos.com/extras.py，替换 `/usr/local/python3/lib/python3.5/site-packages/psycopg2/` 下的 `extras.py` 文件。
 
 2）安装SuperSet
 
+```
 pip install superset
+```
 
 创建管理用户(后面登录web页面的时候会用到)
 
@@ -236,30 +233,37 @@ fabmanager create-admin --app superset
 
 初始化数据库
 
+```
 superset db upgrade
+```
 
 创建默认角色和权限
 
+```
 superset init
+```
 
-更新sqlalchemy
+更新 sqlalchemy
 
+```
 pip install sqlalchemy==1.0.16
+```
 
 在启动服务之前，还需要修改如下：
 
-1、下载http://udwclient.cn-bj.ufileos.com/base.py，替换/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/dialects/postgresql目录下的base.py。
+1、下载 <http://udwclient.cn-bj.ufileos.com/base.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/dialects/postgresql` 目录下的 `base.py`。
 
-2、下载http://udwclient.cn-bj.ufileos.com/default.py，替换/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/engine目录下的default.py。
+2、下载 <http://udwclient.cn-bj.ufileos.com/default.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/engine` 目录下的 `default.py`。
 
-在8088端口启动web服务器(注意修改相应的防火墙保证8088端口可以被访问)
+在 8088 端口启动 web 服务器(注意修改相应的防火墙保证8088端口可以被访问)
 
+```
 superset runserver -p 8088
+```
 
 3）验证
 
-SuperSet默认启动在8088端口，在浏览器中访问SuperSet主页，访问地址是:
-<http://your_host_ip:8088/,你将看到类似如下的登录页面>。
+SuperSet 默认启动在 8088 端口，在浏览器中访问 SuperSet 主页，访问地址是: <http://your_host_ip:8088/,你将看到类似如下的登录页面>。
 
 ![image](/images/superset_1.png)
 
@@ -267,7 +271,7 @@ SuperSet默认启动在8088端口，在浏览器中访问SuperSet主页，访问
 
 ![image](/images/superset_2.png)
 
-### SuperSet接入UDW数据仓库
+### SuperSet 接入 UDW 数据仓库
 
 1）创建数据源(Databases)
 

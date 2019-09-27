@@ -1,6 +1,6 @@
 {{indexmenu_n>800}}
 
-# 数据分析案例
+# UDW 使用案例
 
 ## 案例一 利用 logstash+Kafka+UDW 对日志数据分析
 
