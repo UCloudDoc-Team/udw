@@ -1,10 +1,13 @@
 {{indexmenu_n>95}}
 
+# 接入第三方BI工具
+
+
 UDW可以接入第三方商业智能（BI）工具来快速实现数据的可视化。第三方商业智能（BI）工具使用标准数据库接口连接UDW数据仓库，例如：JDBC和ODBC。
 
 目前经过测试的有：Zeppelin和SuperSet。
 
-# 一、 UDW接入Zeppelin
+## 一、 UDW接入Zeppelin
 
 ### Zeppelin简介
 
