@@ -1,6 +1,7 @@
 {{indexmenu_n>800}}
+# UDW使用案例
 
-# 案例一 利用logstash+Kafka+UDW对日志数据分析
+## 案例一 利用logstash+Kafka+UDW对日志数据分析
 
 Logstash是目前比流行、使用较多的日志收集和管理系统，Kafka也是企业常用的分布式发布-订阅消息系统，UDW（UCloud Data
 Warehouse）是大规模并行处理数据仓库产品，下面介绍一些利用logstash+Kafka+UDW构建日志收集-存储-分析的全套解决方案。
@@ -75,15 +76,15 @@ UDW提供了标准的Postgresql的SQL，如下所示，我们可以通过SQL就�
 
 采取列存储和压缩的追加表，分布键为id,根据time分区,时间间隔为1天。完整的建表语句如下所示：
 
-create table t\_unetanalysis\_data (id serial,uuid varchar(64) DEFAULT
-NULL,item\_id int DEFAULT NULL,time int DEFAULT NULL,data varchar(4000)
-DEFAULT NULL)
+create table t_unetanalysis_data 
+  (id serial,uuid varchar(64) DEFAULTNULL,
+   item_id int DEFAULT NULL,
+   time int DEFAULT NULL,
+   data varchar(4000)
+DEFAULT NULL)with (APPENDONLY=true,ORIENTATION=column,compresslevel=5) DISTRIBUTED BY(id)
+partition by range(time) (START (1469980800) END (1488297600) EVERY(86400));
 
-with (APPENDONLY=true,ORIENTATION=column,compresslevel=5) DISTRIBUTED BY
-(id)
 
-partition by range(time) (START (1469980800) END (1488297600) EVERY
-(86400));
 
 其中，id为记录序号，通过serial（序列）实现自增；uuid存储用户组织ID或者用户的IP；item\_id为代表某种分析项的id（分析项如IP流量、TCP包量、TCP重传率等）；time为时间
 
@@ -113,11 +114,19 @@ t\_unetanalysis\_data(uuid,item\_id,time);
 
 ### 数据分析
 
-在页面上点击分析指标，选择查询时间段，发送查询请求，后端收到请求后执行如下SQL查询： SELECT time, data FROM
-t\_unetanalysis\_data where uuid= 'xxx' and item\_id= xxx and time\>xxx
-and time\<xxx； 例如，组织id 为50200021的用户查询一个星期内ip的出量（item\_id为17）， SELECT
-time,data FROM t\_unetanalysis\_data where uuid= '50200021' and
-item\_id= 17 and time \> 1481472000 and time \< 1482076800; 耗时平均为260ms。
+在页面上点击分析指标，选择查询时间段，发送查询请求，后端收到请求后执行如下SQL查询： 
+
+SELECT time, data FROM
+t_unetanalysis_data where uuid= 'xxx' and item_id= xxx and time >xxx
+and time<xxx； 
+
+例如，组织id 为50200021的用户查询一个星期内ip的出量（item_id为17），
+
+SELECT
+  time,data FROM t_unetanalysis_data where uuid= '50200021' and
+item_id= 17 and time > 1481472000 and time < 1482076800; 
+
+耗时平均为260ms。
 时间范围为1天的查询耗时平均为120ms。 将查询到的数据返回给前端，前端解析数据，绘出图形，展示在页面上。
 
 ### 数据可视化
