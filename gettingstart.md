@@ -65,7 +65,7 @@ Windows 环境下 JDBC 驱动，将 jar 添加到工程的 BUILD PATH。
 
 **PostgreSQLJDBC1.java**
 
-<file java PostgreSQLJDBC1.java>
+``` java
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -95,11 +95,13 @@ public class PostgreSQLJDBC1 {
         System.out.println("Opened database successfully");
     }
 }
-</file>
+```
 
 1.  示例程序二：java连接UDW，执行查询操作
 
-<file java PostgreSQLJDBC2.java>
+**PostgreSQLJDBC2.java**
+
+``` java
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -132,7 +134,7 @@ public class PostgreSQLJDBC2 {
          }
      }
 }
-</file>
+```
 
 ### ODBC方式连接
 
@@ -164,7 +166,7 @@ FileUsage      = 1
 
 如果出现以上输出，代表在这台机器上已成功安装了PostgreSQL的ODBC驱动。
 
-1.  编辑/etc/odbc.int文件配置ODBC连接
+1.  编辑`/etc/odbc.ini`文件配置ODBC连接
 
 ```
 [testdb]Description  = PostgreSQL connection to TestDB
@@ -191,7 +193,7 @@ isql testdb
 
 > 如出现以上内容，则表示psqlodbc配置成功。
 
-=== 其他方式 ===
+### 其他方式
 
 1.udw客户端的方式访问
 
@@ -209,7 +211,7 @@ tar -zxvf greenplum-client.tar.gz
 
 2）配置udw客户端
 
-进入greenplum-client安装目录，编辑 greenplum\_client\_path.sh 修改UDW\_HOME:export
+进入 greenplum-client 安装目录，编辑 greenplum\_client\_path.sh 修改UDW\_HOME:export
 UDW\_HOME= client安装目录（如/root/greenplum-client）
 
 3） 使配置生效
