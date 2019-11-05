@@ -1,5 +1,3 @@
-
-
 # 快速上手
 
 ## 一、创建数据仓库
@@ -55,13 +53,11 @@ DB管理员用户名不能为“postgres”。端口固定为 5432，暂不提�
 
 Linux操作系统
 
-```
-yum install postgresql-jdbc.noarch –y
-```
+    yum install postgresql-jdbc.noarch –y
 
 Windows 环境下 JDBC 驱动，将 jar 添加到工程的 BUILD PATH。
 
-1.  示例程序1，java连接UDW，执行建表，插入操作
+示例程序1，java连接UDW，执行建表，插入操作
 
 **PostgreSQLJDBC1.java**
 
@@ -97,7 +93,7 @@ public class PostgreSQLJDBC1 {
 }
 ```
 
-1.  示例程序二：java连接UDW，执行查询操作
+示例程序二：java连接UDW，执行查询操作
 
 **PostgreSQLJDBC2.java**
 
@@ -140,54 +136,44 @@ public class PostgreSQLJDBC2 {
 
 Linux操作系统：CentOS 6.5 64位
 
-1.  安装 postgresql odbc驱动
+1. 安装 postgresql odbc驱动
 
-        yum install postgresql-odbc.x86_64 -y
+        # yum install postgresql-odbc.x86_64 -y
 
-1.  编辑odbcinst.ini文件，配置odbc驱动
+2. 编辑`/etc/odbcinst.ini`文件，配置odbc驱动
 
-```
-vim  /etc/odbcinst.ini
+        Description    = ODBC for PostgreSQL
+        Driver         = /usr/lib/psqlodbc.so
+        Setup          = /usr/lib/libodbcpsqlS.so
+        Driver64       = /usr/lib64/psqlodbc.so
+        Setup64        = /usr/lib64/libodbcpsqlS.so
+        FileUsage      = 1
 
-Description    = ODBC for PostgreSQL
-Driver         = /usr/lib/psqlodbc.so
-Setup          = /usr/lib/libodbcpsqlS.so
-Driver64       = /usr/lib64/psqlodbc.so
-Setup64        = /usr/lib64/libodbcpsqlS.so
-FileUsage      = 1
-```
+3. 测试ODBC驱动是否安装成功
 
-1.  测试ODBC驱动是否安装成功
+        # odbcinst -q -d
+        [PostgreSQL]
 
-```
-# odbcinst -q -d
-[PostgreSQL]
-```
+    如果出现以上输出，代表在这台机器上已成功安装了PostgreSQL的ODBC驱动。
 
-如果出现以上输出，代表在这台机器上已成功安装了PostgreSQL的ODBC驱动。
+4. 编辑`/etc/odbc.ini`文件配置ODBC连接
 
-1.  编辑`/etc/odbc.ini`文件配置ODBC连接
+        [testdb]Description  = PostgreSQL connection to TestDB
+        Driver               = PostgreSQL
+        Database             = Database
+        Servername           = MasterNodeIP
+        UserName             = UserName
+        Password             = Password
+        Port                 = Port
+        Protocol             = 8.3
+        ReadOnly             = No
+        RowVersioning        = NoShow
+        SystemTables         = No
+        ConnSettings         =
 
-```
-[testdb]Description  = PostgreSQL connection to TestDB
-Driver               = PostgreSQL
-Database             = Database
-Servername           = MasterNodeIP
-UserName             = UserName
-Password             = Password
-Port                 = Port
-Protocol             = 8.3
-ReadOnly             = No
-RowVersioning        = NoShow
-SystemTables         = No
-ConnSettings         =
-```
+5.  测试连接
 
-1.  测试连接
-
-```
-isql testdb
-```
+        # isql testdb
 
 ![image](/images/udw10.png)
 
@@ -203,30 +189,29 @@ isql testdb
 
 1）下载greenplum客户端解压
 
-```
-wget http://udwclient.cn-bj.ufileos.com/greenplum-client.tar.gz
+    wget http://udw.cn-bj.ufileos.com/greenplum-client.tar
 
-tar -zxvf greenplum-client.tar.gz
-```
+    tar -zxvf greenplum-client.tar.gz
 
 2）配置udw客户端
 
-进入 greenplum-client 安装目录，编辑 greenplum\_client\_path.sh 修改UDW\_HOME:export
-UDW\_HOME= client安装目录（如/root/greenplum-client）
+进入 greenplum-client 安装目录，编辑 `greenplum_client_path.sh` 修改`UDW_HOME`(export UDW_HOME= client安装目录)（如/root/greenplum-client）
 
 3） 使配置生效
 
-在\~/.bashrc中添加如下配置
+在`~/.bashrc`中添加如下配置
 
-source /data/greenplum-client/greenplum\_client\_path.sh
+    source /data/greenplum-client/greenplum\_client\_path.sh
 
-source \~/.bashrc
+执行
+
+    source ~/.bashrc
 
 备注：/data/greenplum-client是greenplum-client的安装路径
 
 4） 连接数据库
 
-psql -h hostIP（或域名） –U username -d database -p port –W
+    psql -h hostIP（或域名） –U username -d database -p port –W
 
 1.2 udw（udpg）客户端方式访问（以Centos为例）
 
@@ -234,29 +219,27 @@ psql -h hostIP（或域名） –U username -d database -p port –W
 
 1）下载udw客户端
 
-```
-wget http://udwclient.ufile.ucloud.cn/udw-client.tar
-```
+    wget http://udw.cn-bj.ufileos.com/udw-client.tar
 
-解压: tar xvf udw-client.tar
+    tar xvf udw-client.tar
 
 2）配置udw客户端
 
-进入udw-client安装目录，编辑 udw\_client\_path.sh，修改UDW\_CLIENT:export
-UDW\_CLIENT= client安装目录（如/root/udw-client）
+进入udw-client安装目录，编辑 `udw_client_path.sh`，修改 `UDW_CLIENT`(export UDW_CLIENT= client安装目录)（如/root/udw-client）
 
 3）使配置生效在\~/.bashrc中添加如下配置
 
-```
-source /data/udw-client/udw_client_path.sh
-source ~/.bashrc
-```
+    source /data/udw-client/udw_client_path.sh
 
-    备注：/data/udw-client是udw-client的安装路径
+执行:
+
+    source ~/.bashrc
+
+> 备注：/data/udw-client是udw-client的安装路径
 
 4） 连接数据库
 
-psql -h hostIP（或域名） –U username -d database -p port –W
+    psql -h hostIP（或域名） –U username -d database -p port –W
 
 2.python客户端访问
 
@@ -576,5 +559,4 @@ pg_close($db);
 
 4.SQL Workbench/J 访问 udw
 
-除了以上几种方式，UDW还可以使用SQL Workbench/J来进行访问，详情可见：[SQL Workbench/J 访问
-udw](https://static.ucloud.cn/7d32490688f9ddfca7b230c85158785b.pdf)
+除了以上几种方式，UDW还可以使用SQL Workbench/J来进行访问，详情可见：[SQL Workbench/J 访问udw](http://udw.cn-bj.ufileos.com/SQL%20Workbench%3AJ%20%E8%AE%BF%E9%97%AE%20udw.pdf)

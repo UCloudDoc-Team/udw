@@ -1,5 +1,3 @@
-
-
 # 接入第三方 BI 工具
 
 UDW可以接入第三方商业智能（BI）工具来快速实现数据的可视化。第三方商业智能（BI）工具使用标准数据库接口连接 UDW 数据仓库，例如：JDBC 和 ODBC。
@@ -217,7 +215,7 @@ pip install --upgrade pip
 pip install psycopg2==2.6.2
 ```
 
-下载 http://udwclient.cn-bj.ufileos.com/extras.py，替换 `/usr/local/python3/lib/python3.5/site-packages/psycopg2/` 下的 `extras.py` 文件。
+下载 <http://udw.cn-bj.ufileos.com/extras.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/psycopg2/` 下的 `extras.py` 文件。
 
 2）安装SuperSet
 
@@ -251,9 +249,9 @@ pip install sqlalchemy==1.0.16
 
 在启动服务之前，还需要修改如下：
 
-1、下载 <http://udwclient.cn-bj.ufileos.com/base.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/dialects/postgresql` 目录下的 `base.py`。
+1、下载 <http://udw.cn-bj.ufileos.com/base.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/dialects/postgresql` 目录下的 `base.py`。
 
-2、下载 <http://udwclient.cn-bj.ufileos.com/default.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/engine` 目录下的 `default.py`。
+2、下载 <http://udw.cn-bj.ufileos.com/default.py>，替换 `/usr/local/python3/lib/python3.5/site-packages/sqlalchemy/engine` 目录下的 `default.py`。
 
 在 8088 端口启动 web 服务器(注意修改相应的防火墙保证8088端口可以被访问)
 
@@ -263,7 +261,7 @@ superset runserver -p 8088
 
 3）验证
 
-SuperSet 默认启动在 8088 端口，在浏览器中访问 SuperSet 主页，访问地址是: <http://your_host_ip:8088/,你将看到类似如下的登录页面>。
+SuperSet 默认启动在 8088 端口，在浏览器中访问 SuperSet 主页，访问地址是: <http://your_host_ip:8088/>,你将看到类似如下的登录页面。
 
 ![image](/images/superset_1.png)
 

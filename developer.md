@@ -1,5 +1,3 @@
-
-
 # 开发指南
 
 ## 1、连接数据库
@@ -19,7 +17,7 @@ psql -h hostIP（或域名） –U username -d database -p port –W
 ```
 
 * hostIP：udw master节点的ip或者域名
-* username :数据库用户名
+* username：数据库用户名
 * database：数据库名称
 
 ### 1.2 udw 客户端方式访问
@@ -31,7 +29,7 @@ psql -h hostIP（或域名） –U username -d database -p port –W
 1）下载greenplum客户端解压
 
 ```
-wget http://udwclient.cn-bj.ufileos.com/greenplum-client.tar.gz
+wget http://udw.cn-bj.ufileos.com/greenplum-client.tar.gz
 
 tar -zxvf greenplum-client.tar.gz
 ```
@@ -73,7 +71,7 @@ psql -h hostIP（或域名） –U username -d database -p port –W
 1）下载 udw 客户端
 
 ```
-wget http://udwclient.ufile.ucloud.cn/udw-client.tar
+wget http://udw.cn-bj.ufileos.com/udw-client.tar
 
 tar xvf udw-client.tar
 ```
@@ -110,7 +108,7 @@ psql -h hostIP（或域名） –U username -d database -p port –W
 
 ### 1.3 SQL Workbench/J
 
-工具访问udw的文档请参考：<https://static.ucloud.cn/7d32490688f9ddfca7b230c85158785b.pdf>
+工具访问udw的文档请参考：<http://udw.cn-bj.ufileos.com/SQL%20Workbench%3AJ%20%E8%AE%BF%E9%97%AE%20udw.pdf>
 
 ## 2、数据库管理
 
@@ -348,11 +346,11 @@ ZLIB 的压缩级别 compresslevel 取值从1到9，一般选择5已经足够了
 
 外部表可以方便 udw 加载外部文件或者外部系统文件。详细使用请参考
 
-外部表：[外部表并行加载数据到udw](http://udwclient.ufile.ucloud.com.cn/UDW%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
+外部表：[外部表并行加载数据到udw](http://udw.cn-bj.ufileos.com/UDW%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
 
-hdfs外部表：[创建hdfs外部表](http://udwclient.ufile.ucloud.com.cn/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
+hdfs外部表：[创建hdfs外部表](http://udw.cn-bj.ufileos.com/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
 
-ufile外部表：[创建ufile外部表](http://udwclient.cn-bj.ufileos.com/ufile%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0udw.pdf)
+ufile外部表：[创建ufile外部表](http://udw.cn-bj.ufileos.com/ufile%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0udw.pdf)
 
 ### 4.8 变更表
 
@@ -397,9 +395,9 @@ udw 提供了丰富的数据加载方式和工具：
 
 我们可以通过insert插入数据到udw，语法如下所示：
 
-    INSERT INTO 表名 \[ ( 字段 \[, ...\] ) \] { DEFAULT VALUES | VALUES ( { 表达式 | DEFAULT } \[, ...\] ) | 子查询 }
+    INSERT INTO 表名 [ ( 字段 [, ...] ) ] { DEFAULT VALUES | VALUES ( { 表达式 | DEFAULT } [, ...] ) | 子查询 }
 
-每次插入一条的效率会比较低、我们建议一次插入多条（500-5000条）数据。如果要加载的数据量比较大的话、强烈建议使用 copy 方式加载或者我们下面介绍的几种方式加载。如果您的数据已经在 udw 中，也可以通过 `insert into table1 select \* from table2` 这种方式加载数据。
+每次插入一条的效率会比较低、我们建议一次插入多条（500-5000条）数据。如果要加载的数据量比较大的话、强烈建议使用 copy 方式加载或者我们下面介绍的几种方式加载。如果您的数据已经在 udw 中，也可以通过 `insert into table1 select * from table2` 这种方式加载数据。
 
 ### 5.2 copy加载数据
 
@@ -416,26 +414,26 @@ udw 提供了丰富的数据加载方式和工具：
 
 外部表并行加载数据是利用 http 协议实现的一个文件服务器，用于创建 udw 的外部文件表。使用外部表并行加载数据可以让 udw 的每个子节点并行的加载数据、大大的加快数据导入 udw 的速度。在加载数据的时候我们可以先创建一个外部表，然后通过 `INSERT INTO <table> SELECT * FROM <external_table>`。这样就可以并行的加载文件中的数据。
 
-使用方法请参考我们的文档：[外部表并行加载数据到udw](http://udwclient.ufile.ucloud.com.cn/UDW%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
+使用方法请参考我们的文档：[外部表并行加载数据到udw](http://udw.cn-bj.ufileos.com/UDW%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
 
 ### 5.4 从hdfs加载数据
 
 为了方便 udw 和 hdfs 之间的数据导入和导出，我们提供个两种方案；
 
-1.  用 sqoop 实现 hdfs 和 udw 直接的数据导入导出，使用方法请参考：[hdfs和hive中数据导入导出到udw](http://udwclient.ufile.ucloud.cn/hdfs和hive中数据导入导出到udw.pdf)
-2.  创建 hdfs 外部表，使用方法请参考：[创建hdfs外部表](http://udwclient.ufile.ucloud.com.cn/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
+1.  用 sqoop 实现 hdfs 和 udw 直接的数据导入导出，使用方法请参考：[hdfs和hive中数据导入导出到udw](http://udw.cn-bj.ufileos.com/hdfs%E5%92%8Chive%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%88%B0udw.pdf)
+2.  创建 hdfs 外部表，使用方法请参考：[创建hdfs外部表](http://udw.cn-bj.ufileos.com/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
 
 ### 5.5 从mysql加载数据
 
-为了方便 mysql 数据导入到 udw，我们提供了 mysql 导入数据到 udw 的工具 mysql2udw，使用方法请参考：[mysql数据导入到udw](http://udwclient.ufile.ucloud.cn/mysql数据导入到udw.pdf)
+为了方便 mysql 数据导入到 udw，我们提供了 mysql 导入数据到 udw 的工具 mysql2udw，使用方法请参考：[mysql数据导入到udw](http://udw.cn-bj.ufileos.com/mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%88%B0udw.pdf)
 
 ### 5.6 从oracle中导入数据
 
-为了方便 oracle 数据导入 udw，我们提供了 oracle 导入数据到 udw 的工具 ora2udw,使用方法请参考：[oracle数据导入到udw](http://ora2udw.ufile.ucloud.com.cn/从Oracle导入数据到UDW.pdf)
+为了方便 oracle 数据导入 udw，我们提供了 oracle 导入数据到 udw 的工具 ora2udw,使用方法请参考：[oracle数据导入到udw](http://udw.cn-bj.ufileos.com/%E4%BB%8EOracle%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%88%B0UDW.pdf)
 
 ### 5.7 从ufile加载数据
 
-为了方便 ufile 数据导入到 udw，我们提供了 ufile 外部表，导入数据到 udw，使用方法请参考：[ufile数据导入到udw](http://udwclient.cn-bj.ufileos.com/ufile%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0udw.pdf)
+为了方便 ufile 数据导入到 udw，我们提供了 ufile 外部表，导入数据到 udw，使用方法请参考：[ufile数据导入到udw](http://udw.cn-bj.ufileos.com/ufile%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0udw.pdf)
 
 ## 6、分区表
 
@@ -455,7 +453,7 @@ udw 提供了丰富的数据加载方式和工具：
 
 > 使用分区的时候请避免建立过多的分区，创建过多的分区可能会影响管理和维护作业，例如： 清理工作，节点恢复，集群扩展，查看磁盘使用情况等。
 
-=== 6.1 创建分区表 ===
+### 6.1 创建分区表
 
 创建分区变需要注意以下问题：
 
@@ -575,16 +573,16 @@ udw 提供了丰富的数据加载方式和工具：
 
 ### 6.2查看分区表信息
 
-通过 pg\_partitions 视图，您可以查看分区表设计信息。下面示例可以查看 p\_store\_sales 表的分区设计信息：
+通过 pg_partitions 视图，您可以查看分区表设计信息。下面示例可以查看 p_store_sales 表的分区设计信息：
 
     SELECT partitionboundary, partitiontablename, partitionname, partitionlevel, partitionrank
     FROM pg_partitions WHERE tablename='p_store_sales';
 
 备注：
 
-* pg\_partition ：跟踪分区表及其继承关系信息。
-* pg\_partition\_templates ：创建子分区使用的子分区模版信息。
-* pg\_partition\_columns ： 分区表分区键值信息。
+* pg_partition：跟踪分区表及其继承关系信息。
+* pg_partition_templates：创建子分区使用的子分区模版信息。
+* pg_partition_columns： 分区表分区键值信息。
 * partitionrank：分区表的rank值，删除分区表的时候需要用这个值，详情请参考删除分区表
 
 ### 6.3 加载数据分区表
@@ -745,103 +743,66 @@ VACUUM：数据库磁盘垃圾回收并收集统计信息。
 
 ## 10、常用SQL大全
 
-1.  psql客户端常用
+1. psql客户端常用
 
-\\h 获取SQL命令的帮助
+        \h 获取SQL命令的帮助
+        \? 获取psql命令的帮助
+        \q 退出
 
-\\? 获取psql命令的帮助
+2. 一般选项
 
-\\q 退出
+        \c [数据库名]－[用户名] 连接到新数据库
+        \cd [目录名] 改变当前的工作目录
+        \encoding [编码] 显示或设置客户端编码
+        \h [名字] SQL命令的语法帮助
+        \set [名字 ［值］] 设置内部变量
+        \timing 查询计时开关切换（默认关闭）
+        \unset 名字 取消（删除）内部变量
 
-1.  一般选项
+3.  查询缓冲区选项
 
-\\c \[数据库名\]－\[用户名\] 连接到新数据库
+        \e [文件名] 用一个外部编辑器编辑当前查询缓冲区或文件
+        \g［文件名］向服务器发送SQL命令
+        \p 显示当前查询缓冲区的内容
+        \r 重置 (清理) 查询缓冲区
+        \s [文件名] 打印历史或者将其保存到文件
+        \w [文件名] 将查询缓冲区写出到文件
 
-\\cd \[目录名\] 改变当前的工作目录
+4. 输入／输出选项
 
-\\encoding \[编码\] 显示或设置客户端编码
+        \echo [字串] 向标准输出写出文本 /i 文件名 执行来自文件的命令 
+        \o [文件名] 向文件或者 |管道 发送所有查询结果 
 
-\\h \[名字\] SQL命令的语法帮助
+5. 信息选项
 
-\\set \[名字 ［值］\] 设置内部变量
+        \d [名字] 描述表, 索引, 序列, 或者视图
+        \d{t|i|s|v|S} [模式] (加 "+" 获取更多信息)   列出表/索引/序列/视图/系统表 
+        \da [模式] 列出聚集函数 
+        \db [模式] 列出表空间 (加 "+" 获取更多的信息) 
+        \dc [模式] 列出编码转换 
+        \dC 列出类型转换 
+        \dd [模式] 显示目标的注释
+        \df [模式] 列出函数 (加 "+" 获取更多的信息) 
+        \dg [模式] 列出组 
+        \dn [模式] 列出模式 (加 "+" 获取更多的信息) 
+        \do [名字] 列出操作符 
+        \dl 列出大对象, 和 lo_list 一样 
+        \dp [模式] 列出表, 视图, 序列的访问权限 
+        \dT [模式] 列出数据类型 (加 "+" 获取更多的信息) 
+        \du [模式] 列出用户 
+        \l 列出所有数据库 (加 "+" 获取更多的信息) 
+        \z [模式] 列出表, 视图, 序列的访问权限 (和 dp 一样)
 
-\\timing 查询计时开关切换（默认关闭）
+6.  格式选项 
 
-\\unset 名字 取消（删除）内部变量
-
-1.  查询缓冲区选项
-
-\\e \[文件名\] 用一个外部编辑器编辑当前查询缓冲区或文件
-
-\\g［文件名］向服务器发送SQL命令
-
-\\p 显示当前查询缓冲区的内容
-
-\\r 重置 (清理) 查询缓冲区
-
-\\s \[文件名\] 打印历史或者将其保存到文件
-
-\\w \[文件名\] 将查询缓冲区写出到文件
-
-1.  输入／输出选项
-
-\\echo \[字串\] 向标准输出写出文本 /i 文件名 执行来自文件的命令 
-
-\\o \[文件名\] 向文件或者 |管道 发送所有查询结果 
-
-1.  信息选项
-
-\\d \[名字\] 描述表, 索引, 序列, 或者视图
-
-\\d{t|i|s|v|S} \[模式\] (加 "+" 获取更多信息)   列出表/索引/序列/视图/系统表 
-
-\\da \[模式\] 列出聚集函数 
-
-\\db \[模式\] 列出表空间 (加 "+" 获取更多的信息) 
-
-\\dc \[模式\] 列出编码转换 
-
-\\dC 列出类型转换 
-
-\\dd \[模式\] 显示目标的注释
-
-\\df \[模式\] 列出函数 (加 "+" 获取更多的信息) 
-
-\\dg \[模式\] 列出组 
-
-\\dn \[模式\] 列出模式 (加 "+" 获取更多的信息) 
-
-\\do \[名字\] 列出操作符 
-
-\\dl 列出大对象, 和 lo\_list 一样 
-
-\\dp \[模式\] 列出表, 视图, 序列的访问权限 
-
-\\dT \[模式\] 列出数据类型 (加 "+" 获取更多的信息) 
-
-\\du \[模式\] 列出用户 
-
-\\l 列出所有数据库 (加 "+" 获取更多的信息) 
-
-\\z \[模式\] 列出表, 视图, 序列的访问权限 (和 dp 一样)
-
-1.  格式选项 
-
-\\a 在非对齐和对齐的输出模式之间切换 
-
-\\C \[字串\] 设置表标题, 如果参数空则取消标题 
-
-\\f \[字串\] 为非对齐查询输出显示或设置域分隔符 
-
-\\H 在 HTML 输出模式之间切换 (当前是 关闭) 
-
-\\pset 变量 \[值\]   设置表的输出选项 
-
-\\t 只显示行 (当前是 关闭) 
-
-\\T \[字串\] 设置 HTML \<表\> 标记属性, 如果没有参数就取消设置
-
-\\x 在扩展输出之间切换 (目前是 关闭) 
+        \a 在非对齐和对齐的输出模式之间切换 
+        \C [字串] 设置表标题, 如果参数空则取消标题 
+        \f [字串] 为非对齐查询输出显示或设置域分隔符 
+        \H 在 HTML 输出模式之间切换 (当前是 关闭) 
+        \pset 变量 [值]   设置表的输出选项 
+        \t 只显示行 (当前是 关闭) 
+        \T [字串] 设置 HTML <表> 标记属性, 如果没有参数就取消设置
+        \x 在扩展输出之间切换 (目前是 关闭) 
 
 ## 12、常用SQL命令
 

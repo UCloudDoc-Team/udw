@@ -1,5 +1,3 @@
-
-
 # FAQs
 
 ## 创建好数据仓库之后怎么连接到UDW？
@@ -8,14 +6,14 @@
 
 ## UDW支持从mysql导入数据吗？
 
-支持。我们提供了一种从MySQL向UDW导入数据的工具。这个工具可以全量、也可以增量从MySQL导入到UDW单线程可以到达每秒4000-8000条,多线程可以达到4w-10w条每秒。具体使用请参考[mysql数据导入到udw.pdf](http://udwclient.ufile.ucloud.cn/mysql数据导入到udw.pdf)
+支持。我们提供了一种从MySQL向UDW导入数据的工具。这个工具可以全量、也可以增量从MySQL导入到UDW单线程可以到达每秒4000-8000条,多线程可以达到4w-10w条每秒。具体使用请参考[mysql数据导入到udw.pdf](http://udw.cn-bj.ufileos.com/mysql%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%88%B0udw.pdf)
 
 ## HDFS/Hive与UDW之间可以导入导出数据吗？
 
 可以。 为了方便udw和hdfs/hive之间的数据导入和导出，我们提供个两种方案：
 
-1.  用sqoop实现hdfs和udw直接的数据导入导出，使用方法请参考：[hdfs和hive中数据导入导出到udw](http://udwclient.ufile.ucloud.cn/hdfs和hive中数据导入导出到udw.pdf)
-2.  创建hdfs外部表，使用方法请参考：[创建hdfs外部表](http://udwclient.ufile.ucloud.com.cn/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
+1.  用sqoop实现hdfs和udw直接的数据导入导出，使用方法请参考：[hdfs和hive中数据导入导出到udw](http://udw.cn-bj.ufileos.com/hdfs%E5%92%8Chive%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%88%B0udw.pdf)
+2.  创建hdfs外部表，使用方法请参考：[创建hdfs外部表](http://udw.cn-bj.ufileos.com/HDFS%E5%A4%96%E9%83%A8%E8%A1%A8.pdf)
 
 ## UDW中怎么kill掉正在执行的SQL语句？
 

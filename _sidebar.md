@@ -1,8 +1,8 @@
 * 云数据仓库 UDW
     * [概览](analysis/udw/overview)
-    * [产品架构](analysis/udw/intro)
+    * [产品架构](analysis/udw/architecture)
     * [快速上手](analysis/udw/gettingstart)
-    * [操作指南](analysis/udw/common)
+    * [操作指南](analysis/udw/operation_guide)
     * [访问UDW数据仓库](analysis/udw/connect)
     * [数据导入](analysis/udw/load_data)
     * [开发指南](analysis/udw/developer)

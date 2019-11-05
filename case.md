@@ -1,11 +1,8 @@
-
-
 # UDW 使用案例
 
 ## 案例一 利用 logstash+Kafka+UDW 对日志数据分析
 
-Logstash 是目前比流行、使用较多的日志收集和管理系统，Kafka也是企业常用的分布式发布-订阅消息系统，UDW（UCloud Data
-Warehouse）是大规模并行处理数据仓库产品，下面介绍一些利用 logstash+Kafka+UDW 构建日志收集-存储-分析的全套解决方案。
+Logstash 是目前比流行、使用较多的日志收集和管理系统，Kafka也是企业常用的分布式发布-订阅消息系统，UDW（UCloud Data Warehouse）是大规模并行处理数据仓库产品，下面介绍一些利用 logstash+Kafka+UDW 构建日志收集-存储-分析的全套解决方案。
 
 ### Logstash收集日志到Kafka
 
@@ -27,7 +24,7 @@ Warehouse）是大规模并行处理数据仓库产品，下面介绍一些利�
 
 备注：我们除了用 logstash 收集日志到 kafka 之外，我们还可以使用 Flume 收集日志到 Kafka，也可以把 Spark、Storm 中的流式数据写入到 Kafka。更多 kafka 的使用请参考：
 
-<https://static.ucloud.cn/6799401b027e12e2206591051a107507.pdf>
+<http://udw.cn-bj.ufileos.com/kafka%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pdf>
 
 ### Kafka数据写入到UDW
 
