@@ -11,5 +11,6 @@
     * [UDW中Json类型](analysis/udw/json)
     * [接入第三方 BI 工具](analysis/udw/bi)
     * [UDW 使用案例](analysis/udw/case)
+    * [Pxf 扩展功能](analysis/udw/pxf)
     * [FAQs](analysis/udw/faqs)
     * [数据仓库价格](analysis/udw/price)
