@@ -2,7 +2,7 @@
 
 ## 创建好数据仓库之后怎么连接到UDW？
 
-请参考帮助文档“快速上手-\>连接数据仓库”部分介绍。<http://cms.docs.ucloud.cn/analysis/udw/gettingstart>
+请参考帮助文档“快速上手-\>连接数据仓库”部分介绍。<https://docs.ucloud.cn/udw/gettingstart>
 
 ## UDW支持从mysql导入数据吗？
 
@@ -52,4 +52,4 @@ ssh -C -f -N -g -L 5432:10.10.10.1:5432 root@10.10.0.9
 
 备注：请注意开放外网防火墙端口 5432（也可以把 udw 端口映射到 uhost上其他端口上），网络防火墙配置请参考：
 
-<https://docs.ucloud.cn/network/firewall/index.html>
+<https://docs.ucloud.cn/firewall/README>
