@@ -25,10 +25,10 @@ SELECT datname,procpid,query_start, current_query,waiting,client_addr FROM pg_st
 
 > datname表示数据库名
 > procpid表示当前的SQL对应的PID
-> query\_start表示SQL执行开始时间
-> current\_query表示当前执行的SQL语句
+> query_start表示SQL执行开始时间
+> current_query表示当前执行的SQL语句
 > waiting表示是否正在执行，t表示正在执行，f表示已经执行完成
-> client\_addr表示客户端IP地址
+> client_addr表示客户端IP地址
 
 找出procpid，假设为1234。然后执行
 
@@ -50,7 +50,7 @@ udw 默认是通过内网访问的，为了数据安全性，尽量不要通过�
 ssh -C -f -N -g -L 5432:10.10.10.1:5432 root@10.10.0.9
 ```
 
-备注：请注意开放外网防火墙端口 5432（也可以把 udw 端口映射到 uhost上其他端口上），网络防火墙配置请参考：<https://docs.ucloud.cn/firewall/README>
+备注：请注意开放外网防火墙端口 5432（也可以把 udw 端口映射到 uhost上其他端口上），网络防火墙配置请参考：<https://docs.ucloud.cn/unet/firewall/introduction>
 
 ## 节点扩容时数量有没有什么限制？
 

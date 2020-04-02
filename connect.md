@@ -577,7 +577,7 @@ udw默认是通过内网访问的，为了数据安全性，尽量不要通过�
 
     ssh -C -f -N -g -L 5432:10.10.10.1:5432 root@10.10.0.9
 
-备注：请注意开放外网防火墙端口 5432（也可以把 udw 端口映射到 uhost上其他端口上），网络防火墙配置请参考： <https://docs.ucloud.cn/firewall/README>
+备注：请注意开放外网防火墙端口 5432（也可以把 udw 端口映射到 uhost上其他端口上），网络防火墙配置请参考： <https://docs.ucloud.cn/unet/firewall/introduction>
 
 ### 2.2 SQL Workbench/J
 

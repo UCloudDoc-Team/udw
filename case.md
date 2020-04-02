@@ -59,7 +59,7 @@ UDW提供了标准的Postgresql的SQL，如下所示，我们可以通过SQL就�
 ### 数据可视化
 
 为了方便UDW的查询数据可视化话，我们可以把UDW接入第三方的BI系统，请参考我们的文档：
-[UDW接入第三方BI系统](https://docs.ucloud.cn/udw/%E8%BF%9E%E6%8E%A5bi%E7%B3%BB%E7%BB%9F)
+[UDW接入第三方BI系统](https://docs.ucloud.cn/udw/bi)
 
 ## 案例二 基于UDW实现网络流分析
 
