@@ -31,11 +31,8 @@ INSERT INTO 表名 [ ( 字段 [, ...] ) ]
     cat /data/test.dat | psql -h hostIP -U UserName  -d DB -c "COPY employee from STDIN with CSV DELIMITER '|';"
 
 > hostIP：udw访问id
-
 > UserName ：访问数据的用户名
-
 > DB：数据库名称
-
 > employee：表名
 
 ### 外部表并行加载数据
