@@ -177,5 +177,6 @@ dev=# select pg_size_pretty(pg_relation_size('idx_test'));
 
 `CREATE TABLE...AS SELECT` 命令把该表拷贝为一个新表，新建的表将不会出现膨胀现象。然后删除原始表并且重命名拷贝的表。
 
-参考： <https://gp-docs-cn.github.io/docs/best_practices/bloat.html>
-<https://docs.ucloud.cn/udw/developer（选择数据分布策略>）
+参考：
+* <https://gp-docs-cn.github.io/docs/best_practices/bloat.html>
+* <https://docs.ucloud.cn/udw/developer?id=_43-%e9%80%89%e6%8b%a9%e6%95%b0%e6%8d%ae%e5%88%86%e5%b8%83%e7%ad%96%e7%95%a5>
