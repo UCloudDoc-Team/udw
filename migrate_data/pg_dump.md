@@ -2,7 +2,7 @@
 
 ## 安装 greenplum-db-clients
 
-为了获取 `gp_dump` 工具，需要安装 greenplum-db-clients，安装方法可以查看 <https://gpdb.docs.pivotal.io/6-2/client_tool_guides/installing.html>，根据指引下载适用的安装包并进行安装。
+为了获取 `pg_dump` 工具，需要安装 greenplum-db-clients，安装方法可以查看 <https://gpdb.docs.pivotal.io/6-2/client_tool_guides/installing.html>，根据指引下载适用的安装包并进行安装。
 
 以 CentOS 7.x 为例，下载 6.2.1 的安装包 `greenplum-db-clients-6.2.1-rhel7-x86_64.rpm`，执行命令 `yum install greenplum-db-clients-6.2.1-rhel7-x86_64.rpm` 进行安装。安装之后将 `/usr/local/greenplum-db-clients/bin` 加入系统 `PATH` 环境变量。
 
