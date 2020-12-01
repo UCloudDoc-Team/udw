@@ -7,3 +7,5 @@
 | 计算密集型 | dc1.large | 2核 12G 300G(SSD)   | 700             | 7000            |
 | 存储密集型 | ds1.large | 4核 24G 2000G(SATA) | 1500            | 15000           |
 | 高IO独享型 | dc2.large | 8核 32G 900G(SSD)   | 2300            | 23000           |
+| RSSD云盘型 | rc1.large | 4核 32G 600G(SSD)   | 1500            | 15000           |
+| RSSD云盘型 | rc1.xlarge | 8核 64G 1200G(SSD)   | 3000            | 30000           |
