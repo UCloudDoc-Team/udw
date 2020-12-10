@@ -1,4 +1,3 @@
-<div class="sidebar_title icon__udw"> 云数据仓库 UDW</div>
 
 * [概览](/udw/README)
 * [产品架构](/udw/architecture)
