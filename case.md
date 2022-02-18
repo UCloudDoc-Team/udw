@@ -1,6 +1,6 @@
-# UDW 使用案例
+# UDW Greenplum使用案例
 
-## 案例一 利用 logstash+Kafka+UDW 对日志数据分析
+## 案例一 利用 logstash+Kafka+Greenplum 对日志数据分析
 
 Logstash 是目前比流行、使用较多的日志收集和管理系统，Kafka也是企业常用的分布式发布-订阅消息系统，UDW（UCloud Data Warehouse）是大规模并行处理数据仓库产品，下面介绍一些利用 logstash+Kafka+UDW 构建日志收集-存储-分析的全套解决方案。
 
@@ -26,21 +26,21 @@ Logstash 是目前比流行、使用较多的日志收集和管理系统，Kafka
 
 <http://udw.cn-bj.ufileos.com/kafka%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pdf>
 
-### Kafka数据写入到UDW
+### Kafka数据写入到Greenplum
 
-下面以Nodejs语言为例、其他语言也可以实现消费Kafka的数据并且写入到UDW。
+下面以Nodejs语言为例、其他语言也可以实现消费Kafka的数据并且写入到Greenplum。
 
 ![image](/images/case1.2.png)
 
-如上所示，我们可以定时的把Kafka消费的数据导入到UDW，上面的示例是用nodejs实现的，需要依赖kafka-node，kafka-node的git地址：<https://github.com/SOHU-Co/kafka-node>
+如上所示，我们可以定时的把Kafka消费的数据导入到Greenplum，上面的示例是用nodejs实现的，需要依赖kafka-node，kafka-node的git地址：<https://github.com/SOHU-Co/kafka-node>
 
-下面是通过copy的方式把从Kafka中消费的数据导入到UDW，为了加快数据插入UDW的速度，强烈建议用copy的方式导入数据到UDW。nodejs的copy数据到postgresql的使用方法请参考：<https://github.com/brianc/node-pg-copy-streams>。
+下面是通过copy的方式把从Kafka中消费的数据导入到Greenplum，为了加快数据插入Greenplum的速度，强烈建议用copy的方式导入数据到UDW。nodejs的copy数据到postgresql的使用方法请参考：<https://github.com/brianc/node-pg-copy-streams>。
 
 ![image](/images/case1.3.png)
 
-UDW的数据库和表格相关设计和操作，请参考：[UDW开发指南](https://docs.ucloud.cn/udw/developer)
+Greenplum的数据库和表格相关设计和操作，请参考：[Greenplum开发指南](https://docs.ucloud.cn/udw/developer)
 
-### 利用UDW进行数据分析
+### 利用Greenplum进行数据分析
 
 #### 设计表格
 

@@ -1,9 +1,9 @@
-# 访问UDW数据仓库
+# 访问UDW Greenplum数据仓库
 
-## 1 客户端工具访问UDW
+## 1 客户端工具访问UDW Greenplum
 
-udw支持按照postgresql的客户端来访问udw，支持udw客户端访问，还可以支持jdbc、odbc、php、python、psql等方式来访问udw。另外，也可以通过图形化的SQL
-Workbench/J、Navicat等工具来访问udw。
+Greenplum支持按照postgresql的客户端来访问，支持Greenplum客户端访问，还可以支持jdbc、odbc、php、python、psql等方式来访问Greenplum。另外，也可以通过图形化的SQL
+Workbench/J、Navicat等工具来访问Greenplum。
 
 ### 1.1 psql客户端方式访问
 
@@ -13,7 +13,7 @@ Workbench/J、Navicat等工具来访问udw。
 
     psql -h hostIP（或域名） –U username -d database -p port –W
 
-> hostIP：udw master节点的ip或者域名
+> hostIP：Greenplum master节点的ip或者域名
 > username: 数据库用户名
 > database：数据库名称
 
