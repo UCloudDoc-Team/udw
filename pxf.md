@@ -68,14 +68,14 @@ LOCATION ('pxf://data/pxf_examples/pxfwritable_hdfs_textsimple?PROFILE=hdfs:text
 FORMAT 'TEXT' (delimiter=':');
 
 INSERT INTO pxf_hdfs_writabletbl VALUES ( 'Cleveland', 'Oct', 3812, 96645.37 );
-INSERT INTO pxf_hdfs_writabletbl VALUES ( 'Frankfurt', 'Mar', 777, 3956.98 );
+INSERT INTO pxf_hdfs_writabletbl VALUES ( 'DE(Frankfurt)', 'Mar', 777, 3956.98 );
 ```
 
 在 HDFS 中查看数据：
 
     $ hdfs dfs -cat /data/pxf_examples/pxfwritable_hdfs_textsimple/* | zcat
     Cleveland:Oct:3812:96645.37
-    Frankfurt:Mar:777:3956.98
+    DE(Frankfurt):Mar:777:3956.98
 
 > PXF 默认会以 postgres 这个用户名访问 HDFS，所以如果遇到权限错误，请将要访问/写入的 HDFS 目录授权给 postgres 用户
 
